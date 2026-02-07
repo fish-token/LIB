@@ -1,29 +1,30 @@
-/**
- * Fish Token's Site Resources (FTS)
- * Version: 1.0.0 (initial release)
- * Creator: FISH TOKEN (https://niche-site.netlify.app/)
- * 
- *  _______  ___  _______  __   __    _______  _______  ___  _  _______  __    _ 
- * |       ||   ||       ||  | |  |  |       ||       ||   || ||       ||  |  | |
- * |    ___||   ||  _____||  |_|  |  |_     _||   _   ||   |_| ||    ___||   |_| |
- * |   |___ |   || |_____ |       |    |   |  |  | |  ||      _||   |___ |       |
- * |    ___||   ||_____  ||       |    |   |  |  |_|  ||     |_ |    ___||  _    |
- * |   |    |   | _____| ||   _   |    |   |  |       ||    _  ||   |___ | | |   |
- * |___|    |___||_______||__| |__|    |___|  |_______||___| |_||_______||_|  |__|
- * 
- * A comprehensive utility library for modern web development.
- * Encapsulated, modular, and optimized for performance.
- * 
- * Reference: https://github.com/fish-token/LIB/tree/main/ft_resources/fts.js
- * Usage: Load this script before other application scripts to ensure availability.
- * Credit: Attribution is mandatory. Do not remove this header.
- * 
- * Social Profiles:
- * YouTube: https://www.youtube.com/@FlatFishToken
- * GitHub:  https://github.com/fish-token
- * GitLab:  https://gitlab.com/fish-token (Clan: https://gitlab.com/fish-token-clan)
+/*
+    🐟🥇 Fish Token's Site Resources (FTS)
+    -----------------------------------------------------------------------------
+    Wait! Before you use this, check out my site: https://niche-site.netlify.app/
+    It's got more cool stuff and projects I'm working on.
+    -----------------------------------------------------------------------------
+    Version     : 1.1.0
+    Author      : Fish Token
+    GitHub      : https://github.com/fish-token/LIB/tree/Main/ft_resources/fts.js
+    Raw         : https://niche-site.netlify.app/js/external/fts.js
+    License     : MIT (Just keep my name in there, okay?)
+    --------------------------------------------------------------------- --------
+      ███████╗████████╗███████╗
+      ██╔════╝╚══██╔══╝██╔════╝
+      █████╗     ██║   ███████╗
+      ██╔══╝     ██║   ╚════██║
+      ██║        ██║   ███████║
+      ╚═╝        ╚═╝   ╚══════╝
+    -----------------------------------------------------------------------------
+    A collection of tools I made to make my life easier. Maybe it helps you too!
+    It's not a big studio production, just one guy coding.
+    If you like what I do, please consider checking out my other projects!
+    YouTube: https://www.youtube.com/@FlatFishToken
+    GitHub: https://github.com/fish-token
+    GitLab: https://gitlab.com/fish-token (Clan: https://gitlab.com/fish-token-clan)
+    -----------------------------------------------------------------------------
  */
-// -------------------------------------------------------------------------
 
 const FTS = (() => {
     "use strict";
@@ -32,156 +33,453 @@ const FTS = (() => {
     // MATH UTILITIES
     // -------------------------------------------------------------------------
     const math = (() => {
-        // Generates a random integer between min and max. Example: math.random(1, 10)
+        /**
+         * @description Generates a random integer between min and max (inclusive).
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {number} [min=0] - The minimum value.
+         * @param {number} [max=100] - The maximum value.
+         * @returns {number} - A random integer.
+         * @example FTS.math.random(1, 10); // -> 7
+         */
         const random = (min = 0, max = 100) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-        // Snaps a value to the nearest step. Example: math.snap(7, 5) -> 5
+        /**
+         * @description Snaps a value to the nearest step.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {number} value - The value to snap.
+         * @param {number} [snapValue=1] - The step to snap to.
+         * @returns {number} - The snapped value.
+         * @example FTS.math.snap(7, 5); // -> 5
+         */
         const snap = (value, snapValue = 1) => Math.round(value / snapValue) * snapValue;
 
-        // Clamps a value between min and max. Example: math.clamp(15, 0, 10) -> 10
+        /**
+         * @description Clamps a value between a minimum and maximum range.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {number} value - The value to clamp.
+         * @param {number} [min=0] - The lower bound.
+         * @param {number} [max=1] - The upper bound.
+         * @returns {number} - The clamped value.
+         * @example FTS.math.clamp(15, 0, 10); // -> 10
+         */
         const clamp = (value, min = 0, max = 1) => Math.min(Math.max(value, min), max);
 
-        // Clamps a value between 0 and 1. Example: math.clamp01(1.5) -> 1
+        /**
+         * @description Clamps a value between 0 and 1.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {number} value - The value to clamp.
+         * @returns {number} - The clamped value.
+         * @example FTS.math.clamp01(1.5); // -> 1
+         */
         const clamp01 = (value) => clamp(value, 0, 1);
 
-        // Checks if a value is between min and max. Example: math.isBetween(5, 1, 10) -> true
+        /**
+         * @description Checks if a value is within a specified range (inclusive).
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {number} value - The value to check.
+         * @param {number} min - The lower bound.
+         * @param {number} max - The upper bound.
+         * @returns {boolean} - True if the value is within range.
+         * @example FTS.math.isBetween(5, 1, 10); // -> true
+         */
         const isBetween = (value, min, max) => value >= min && value <= max;
 
-        // Wraps a value within a range. Example: math.wrap(370, 0, 360) -> 10
+        /**
+         * @description Wraps a value within a specified range.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {number} value - The value to wrap.
+         * @param {number} [min=0] - The lower bound.
+         * @param {number} [max=1] - The upper bound.
+         * @returns {number} - The wrapped value.
+         * @example FTS.math.wrap(370, 0, 360); // -> 10
+         */
         const wrap = (value, min = 0, max = 1) => {
             const range = max - min;
             return ((((value - min) % range) + range) % range) + min;
         };
 
-        // Linear interpolation between a and b. Example: math.lerp(0, 100, 0.5) -> 50
+        /**
+         * @description Linear interpolation between two values.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {number} a - The start value.
+         * @param {number} b - The end value.
+         * @param {number} [t=0.5] - The interpolant (0 to 1).
+         * @returns {number} - The interpolated value.
+         * @example FTS.math.lerp(0, 100, 0.5); // -> 50
+         */
         const lerp = (a, b, t = 0.5) => a + (b - a) * t;
 
-        // Linear interpolation between angles. Example: math.lerpAngle(0, Math.PI, 0.5)
+        /**
+         * @description Linear interpolation between two angles in radians.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {number} a - The start angle (radians).
+         * @param {number} b - The end angle (radians).
+         * @param {number} [t=0.5] - The interpolant (0 to 1).
+         * @returns {number} - The interpolated angle.
+         * @example FTS.math.lerpAngle(0, Math.PI, 0.5); // -> 1.57...
+         */
         const lerpAngle = (a, b, t = 0.5) => {
             const dt = wrap(b - a, -Math.PI, Math.PI);
             return a + dt * t;
         };
 
-        // Inverse linear interpolation. Example: math.invLerp(0, 100, 50) -> 0.5
+        /**
+         * @description Inverse linear interpolation.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {number} a - The start value.
+         * @param {number} b - The end value.
+         * @param {number} v - The value to find the interpolant for.
+         * @returns {number} - The interpolant t.
+         * @example FTS.math.invLerp(0, 100, 50); // -> 0.5
+         */
         const invLerp = (a, b, v) => (v - a) / (b - a);
 
-        // Maps a value from one range to another. Example: math.map(5, 0, 10, 0, 100) -> 50
+        /**
+         * @description Maps a value from one range to another.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {number} value - The value to map.
+         * @param {number} inMin - Lower bound of the input range.
+         * @param {number} inMax - Upper bound of the input range.
+         * @param {number} outMin - Lower bound of the output range.
+         * @param {number} outMax - Upper bound of the output range.
+         * @returns {number} - The mapped value.
+         * @example FTS.math.map(5, 0, 10, 0, 100); // -> 50
+         */
         const map = (value, inMin, inMax, outMin, outMax) => invLerp(inMin, inMax, value) * (outMax - outMin) + outMin;
 
-        // Smoothly interpolates between a and b. Example: math.smoothStep(0, 10, 5)
+        /**
+         * @description Smoothly interpolates between two values using a sigmoid-like curve.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {number} a - The start value.
+         * @param {number} b - The end value.
+         * @param {number} [t=0.5] - The interpolant.
+         * @returns {number} - The smooth-stepped value.
+         * @example FTS.math.smoothStep(0, 10, 5); // -> 5
+         */
         const smoothStep = (a, b, t = 0.5) => {
             const v = clamp01(invLerp(a, b, t));
             return v * v * (3 - 2 * v);
         };
 
-        // Calculates distance between two points. Example: math.dist({x:0,y:0}, {x:3,y:4}) -> 5
+        /**
+         * @description Calculates the Euclidean distance between two points.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {{x:number, y:number}} [a={x:0,y:0}] - The first point.
+         * @param {{x:number, y:number}} [b={x:0,y:0}] - The second point.
+         * @returns {number} - The distance between points.
+         * @example FTS.math.dist({x:0, y:0}, {x:3, y:4}); // -> 5
+         */
         const dist = (a = { x: 0, y: 0 }, b = { x: 0, y: 0 }) => Math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2);
 
-        // Converts angle between degrees and radians. Example: math.convertAngle(180, 'rad')
-        const convertAngle = (angle, to = 'deg') => to === 'deg' ? angle * (180 / Math.PI) : angle * (Math.PI / 180);
+        /**
+         * @description Converts angles between different units (deg, rad, grad, turn).
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {number} angle - The angle to convert.
+         * @param {string} [to='deg'] - The target unit.
+         * @param {string} [from='deg'] - The source unit.
+         * @returns {number} - The converted angle.
+         * @example FTS.math.convertAngle(180, 'rad', 'deg'); // -> 3.14159...
+         */
+        const convertAngle = (angle, to = 'deg', from = 'deg') => {
+            const toRad = {
+                deg: a => a * (Math.PI / 180),
+                rad: a => a,
+                grad: a => a * (Math.PI / 200),
+                turn: a => a * (Math.PI * 2)
+            };
+            const fromRad = {
+                deg: r => r * (180 / Math.PI),
+                rad: r => r,
+                grad: r => r * (200 / Math.PI),
+                turn: r => r / (Math.PI * 2)
+            };
+            const rad = toRad[from] ? toRad[from](angle) : angle;
+            return fromRad[to] ? fromRad[to](rad) : rad;
+        };
 
-        // Calculates angle between two points. Example: math.angleTo({x:0,y:0}, {x:1,y:1})
+        /**
+         * @description Calculates the angle in radians between two points.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {{x:number, y:number}} [a={x:0,y:0}] - The start point.
+         * @param {{x:number, y:number}} [b={x:0,y:0}] - The target point.
+         * @returns {number} - The angle in radians.
+         * @example FTS.math.angleTo({x:0, y:0}, {x:1, y:1}); // -> 0.7853...
+         */
         const angleTo = (a = { x: 0, y: 0 }, b = { x: 0, y: 0 }) => Math.atan2(b.y - a.y, b.x - a.x);
 
-        // Rounds a value to specified precision. Example: math.round(Math.PI, 2) -> 3.14
+        /**
+         * @description Rounds a value to a specified decimal precision.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {number} value - The value to round.
+         * @param {number} [precision=0] - The number of decimal places.
+         * @returns {number} - The rounded value.
+         * @example FTS.math.round(Math.PI, 2); // -> 3.14
+         */
         const round = (value, precision = 0) => {
             const multiplier = 10 ** precision;
             return Math.round(value * multiplier) / multiplier;
         };
 
-        // Trigonometric sine with optional degree support. Example: math.sin(90, true) -> 1
-        const sin = (a, isDegree = false) => Math.sin(isDegree ? convertAngle(a, 'rad') : a);
-        // Trigonometric cosine with optional degree support. Example: math.cos(0, true) -> 1
-        const cos = (a, isDegree = false) => Math.cos(isDegree ? convertAngle(a, 'rad') : a);
-        // Trigonometric tangent with optional degree support. Example: math.tan(45, true) -> 1
-        const tan = (a, isDegree = false) => Math.tan(isDegree ? convertAngle(a, 'rad') : a);
-        // Inverse sine with optional degree support. Example: math.asin(1, true) -> 90
-        const asin = (v, isDegree = false) => isDegree ? convertAngle(Math.asin(v), 'deg') : Math.asin(v);
-        // Inverse cosine with optional degree support. Example: math.acos(1, true) -> 0
-        const acos = (v, isDegree = false) => isDegree ? convertAngle(Math.acos(v), 'deg') : Math.acos(v);
-        // Inverse tangent with optional degree support. Example: math.atan(1, true) -> 45
-        const atan = (v, isDegree = false) => isDegree ? convertAngle(Math.atan(v), 'deg') : Math.atan(v);
-        // Two-argument inverse tangent with optional degree support. Example: math.atan2(1, 1, true) -> 45
-        const atan2 = (y, x, isDegree = false) => isDegree ? convertAngle(Math.atan2(y, x), 'deg') : Math.atan2(y, x);
-
-        // Compares two angles and returns the shortest distance. Example: math.angleCompare(0, 90, true) -> 90
+        /**
+         * @description Compares two angles and returns the shortest distance between them.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {number} a - The first angle.
+         * @param {number} b - The second angle.
+         * @param {boolean} [isDegree=false] - Whether the angles are in degrees.
+         * @returns {number} - The shortest difference between angles.
+         * @example FTS.math.angleCompare(350, 10, true); // -> 20
+         */
         const angleCompare = (a, b, isDegree = false) => {
             const wrapVal = isDegree ? 360 : Math.PI * 2;
             const diff = (b - a + wrapVal) % wrapVal;
             return diff > wrapVal / 2 ? diff - wrapVal : diff;
         };
 
-        // Calculates power of a base. Example: math.pow(2, 3) -> 8
-        const pow = (b, e) => Math.pow(b, e);
-        // Calculates square root of a value. Example: math.sqrt(16) -> 4
-        const sqrt = (v) => Math.sqrt(v);
-        // Calculates absolute value. Example: math.abs(-5) -> 5
-        const abs = (v) => Math.abs(v);
-        // Returns the minimum value from arguments. Example: math.min(1, 2, 3) -> 1
-        const min = (...args) => Math.min(...args);
-        // Returns the maximum value from arguments. Example: math.max(1, 2, 3) -> 3
-        const max = (...args) => Math.max(...args);
-
         return {
             random, snap, clamp, clamp01, isBetween, wrap,
             lerp, lerpAngle, invLerp, map, smoothStep,
-            dist, convertAngle, angleTo, round,
-            sin, cos, tan, asin, acos, atan, atan2, angleCompare,
-            pow, sqrt, abs, min, max
+            dist, convertAngle, angleTo, round, angleCompare
         };
+    })();
+
+    // -------------------------------------------------------------------------
+    // UI COMPONENTS
+    // -------------------------------------------------------------------------
+    const ui = (() => {
+        /**
+         * @description Displays a customizable cookie consent popup.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {object} [opts={}] - Configuration options for the popup.
+         * @param {string} [opts.head='Cookies & Privacy'] - The header text.
+         * @param {string} [opts.body='We use cookies...'] - The body text.
+         * @param {string} [opts.icon='🍪'] - The icon to display.
+         * @param {Array<object>} [opts.buttons] - Array of button objects {text, callback, className, style}.
+         * @param {function} [opts.onShow=null] - Callback function when popup is shown.
+         * @param {string} [opts.id='fts-cookie-popup'] - The element ID.
+         * @returns {HTMLElement|null} - The popup element or null if consent already exists.
+         * @example FTS.ui.cookiePopup({ head: "Privacy", body: "We use cookies." });
+         */
+        const cookiePopup = (opts = {}) => {
+            const {
+                head = 'Cookies & Privacy',
+                body = 'We use cookies to ensure you get the best experience on our website. By continuing, you agree to our use of cookies.',
+                icon = '🍪',
+                buttons = [
+                    { text: 'Accept All', callback: null, className: 'fts-cookie-accept' },
+                    { text: 'Necessary Only', callback: null, className: 'fts-cookie-decline', style: 'background: #f1f1f1; color: #333;' }
+                ],
+                onShow = null,
+                id = 'fts-cookie-popup'
+            } = opts;
+
+            if (dom.storage.get('fts_cookie_consent')) return null;
+
+            const popup = visual.overlay({
+                title: head,
+                body: body,
+                media: `<div style="font-size: 48px; text-align: center; margin-bottom: 10px;">${icon}</div>`,
+                buttons: buttons.map(btn => ({
+                    ...btn,
+                    callback: (e) => {
+                        if (btn.callback) btn.callback(e);
+                        dom.storage.set('fts_cookie_consent', true);
+                    }
+                })),
+                closeOnBackdrop: false,
+                id
+            });
+
+            if (onShow) onShow();
+            return popup;
+        };
+
+        return { cookiePopup };
     })();
 
     // -------------------------------------------------------------------------
     // VISUAL UTILITIES
     // -------------------------------------------------------------------------
     const visual = (() => {
-        // Parses a color string into an RGBA object. Example: visual.parseColor('#ff0000')
+        /**
+         * @description Parses a color string into an RGBA object. Supports hex, rgb, rgba, hsl, and hsla formats.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} color - The color string to parse.
+         * @returns {object|null} - An object {r, g, b, a} or null if invalid.
+         * @example FTS.visual.parseColor("#ff0000"); // -> {r: 255, g: 0, b: 0, a: 1}
+         */
         const parseColor = (color) => {
             if (typeof color !== 'string') return null;
-            if (color.startsWith('#')) return hexToRgb(color);
-            const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
-            return match ? { r: parseInt(match[1]), g: parseInt(match[2]), b: parseInt(match[3]), a: match[4] ? parseFloat(match[4]) : 1 } : null;
+            const hexMatch = color.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})?$/i) || color.match(/^#?([a-f\d])([a-f\d])([a-f\d])$/i);
+            if (hexMatch) {
+                if (hexMatch[0].length <= 4) {
+                    return { r: parseInt(hexMatch[1] + hexMatch[1], 16), g: parseInt(hexMatch[2] + hexMatch[2], 16), b: parseInt(hexMatch[3] + hexMatch[3], 16), a: 1 };
+                }
+                return { r: parseInt(hexMatch[1], 16), g: parseInt(hexMatch[2], 16), b: parseInt(hexMatch[3], 16), a: hexMatch[4] ? parseInt(hexMatch[4], 16) / 255 : 1 };
+            }
+            const rgbMatch = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
+            if (rgbMatch) return { r: parseInt(rgbMatch[1]), g: parseInt(rgbMatch[2]), b: parseInt(rgbMatch[3]), a: rgbMatch[4] ? parseFloat(rgbMatch[4]) : 1 };
+            const hslMatch = color.match(/hsla?\((\d+),\s*(\d+)%,\s*(\d+)%(?:,\s*([\d.]+))?\)/);
+            if (hslMatch) {
+                const { r, g, b } = hslToRgb(parseInt(hslMatch[1]), parseInt(hslMatch[2]), parseInt(hslMatch[3]));
+                return { r, g, b, a: hslMatch[4] ? parseFloat(hslMatch[4]) : 1 };
+            }
+            return null;
         };
 
-        // Formats an RGBA object into a string. Example: visual.formatColor({r:255,g:0,b:0,a:1}, 'hex')
+        /**
+         * @description Formats an RGB(A) object into a color string.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {object} rgb - The color object {r, g, b, a}.
+         * @param {string} [format='hex'] - Target format ('hex', 'rgb', 'rgba', 'hsl', 'hsla', 'auto').
+         * @returns {string|null} - The formatted color string.
+         * @example FTS.visual.formatColor({r: 255, g: 0, b: 0, a: 1}, "hex"); // -> "#ff0000"
+         */
         const formatColor = (rgb, format = 'hex') => {
             if (!rgb) return null;
             const { r, g, b, a } = rgb;
+            if (format === 'auto') {
+                if (a < 1) return `rgba(${r}, ${g}, ${b}, ${a})`;
+                return rgbToHex(r, g, b, a);
+            }
             if (format === 'rgb') return `rgb(${r}, ${g}, ${b})`;
             if (format === 'rgba') return `rgba(${r}, ${g}, ${b}, ${a})`;
+            if (format === 'hsl' || format === 'hsla') {
+                const { h, s, l } = rgbToHsl(r, g, b);
+                return format === 'hsl' ? `hsl(${Math.round(h)}, ${Math.round(s)}%, ${Math.round(l)}%)` : `hsla(${Math.round(h)}, ${Math.round(s)}%, ${Math.round(l)}%, ${a})`;
+            }
             return rgbToHex(r, g, b, a);
         };
 
-        // Generates a random color string. Example: visual.randomColor('rgba')
+        /**
+         * @description Converts a color string from one format to another.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} color - The input color string.
+         * @param {string} [to='auto'] - The target format.
+         * @returns {string|null} - The converted color string.
+         * @example FTS.visual.convertColor("#ff0000", "rgb"); // -> "rgb(255, 0, 0)"
+         */
+        const convertColor = (color, to = 'auto') => {
+            const rgb = parseColor(color);
+            return formatColor(rgb, to);
+        };
+
+        /**
+         * @description Generates a random color string in the specified format.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} [format='hex'] - The target format.
+         * @returns {string} - A random color string.
+         * @example FTS.visual.randomColor("rgba"); // -> "rgba(12, 45, 200, 0.45)"
+         */
         const randomColor = (format = 'hex') => {
             const r = math.random(0, 255), g = math.random(0, 255), b = math.random(0, 255);
             const a = math.round(math.random(0, 100) / 100, 2);
             return formatColor({ r, g, b, a }, format);
         };
 
-        // Converts a hex color string to an RGBA object. Example: visual.hexToRgb('#f00')
-        const hexToRgb = (hex) => {
-            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})?$/i.exec(hex) || /^#?([a-f\d])([a-f\d])([a-f\d])$/i.exec(hex);
-            if (!result) return null;
-            if (result[0].length <= 4 && !hex.includes('rgba')) {
-                return { r: parseInt(result[1] + result[1], 16), g: parseInt(result[2] + result[2], 16), b: parseInt(result[3] + result[3], 16), a: 1 };
-            }
-            return {
-                r: parseInt(result[1], 16),
-                g: parseInt(result[2], 16),
-                b: parseInt(result[3], 16),
-                a: result[4] ? parseInt(result[4], 16) / 255 : 1
-            };
-        };
+        /**
+         * @description Converts a hex color to an RGB object. Alias for FTS.visual.parseColor(hex).
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} hex - The hex color string.
+         * @returns {object|null} - The color object.
+         * @example FTS.visual.hexToRgb("#ff0000"); // -> {r: 255, g: 0, b: 0, a: 1}
+         */
+        const hexToRgb = (hex) => parseColor(hex);
 
-        // Converts RGB values to a hex color string. Example: visual.rgbToHex(255, 0, 0)
+        /**
+         * @description Converts RGB(A) values to a hex string (including alpha if < 1).
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {number} r - Red (0-255).
+         * @param {number} g - Green (0-255).
+         * @param {number} b - Blue (0-255).
+         * @param {number} [a=1] - Alpha (0-1).
+         * @returns {string} - The hex color string.
+         * @example FTS.visual.rgbToHex(255, 0, 0); // -> "#ff0000"
+         */
         const rgbToHex = (r, g, b, a = 1) => {
             const toHex = (v) => v.toString(16).padStart(2, '0');
             const alpha = a < 1 ? toHex(Math.round(a * 255)) : '';
             return `#${toHex(r)}${toHex(g)}${toHex(b)}${alpha}`;
         };
 
-        // Brightens or darkens a color. Example: visual.brighten('#007AFF', 0.2)
+        /**
+         * @description Converts HSL values to an RGB object.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {number} h - Hue (0-360).
+         * @param {number} s - Saturation (0-100).
+         * @param {number} l - Lightness (0-100).
+         * @returns {object} - The color object {r, g, b}.
+         * @example FTS.visual.hslToRgb(0, 100, 50); // -> {r: 255, g: 0, b: 0}
+         */
+        const hslToRgb = (h, s, l) => {
+            s /= 100; l /= 100;
+            const k = n => (n + h / 30) % 12;
+            const a = s * Math.min(l, 1 - l);
+            const f = n => l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+            return { r: Math.round(255 * f(0)), g: Math.round(255 * f(8)), b: Math.round(255 * f(4)) };
+        };
+
+        /**
+         * @description Converts RGB values to an HSL object.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {number} r - Red (0-255).
+         * @param {number} g - Green (0-255).
+         * @param {number} b - Blue (0-255).
+         * @returns {object} - The HSL object {h, s, l}.
+         * @example FTS.visual.rgbToHsl(255, 0, 0); // -> {h: 0, s: 100, l: 50}
+         */
+        const rgbToHsl = (r, g, b) => {
+            r /= 255; g /= 255; b /= 255;
+            const max = Math.max(r, g, b), min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+            if (max === min) h = s = 0;
+            else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch (max) {
+                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                    case g: h = (b - r) / d + 2; break;
+                    case b: h = (r - g) / d + 4; break;
+                }
+                h /= 6;
+            }
+            return { h: h * 360, s: s * 100, l: l * 100 };
+        };
+
+        /**
+         * @description Brightens or darkens a color by a given amount.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} color - The input color string.
+         * @param {number} [amount=0.1] - Positive to brighten, negative to darken.
+         * @param {string} [format='hex'] - The target format.
+         * @returns {string} - The adjusted color string.
+         * @example FTS.visual.brighten("#007AFF", 0.2); // -> "#0092ff"
+         */
         const brighten = (color, amount = 0.1, format = 'hex') => {
             const rgb = parseColor(color);
             if (!rgb) return color;
@@ -194,7 +492,15 @@ const FTS = (() => {
             }, format);
         };
 
-        // Returns a contrasting color (black or white) for readability. Example: visual.contrast('#000') -> '#ffffff'
+        /**
+         * @description Returns a contrasting color (black or white) for readability.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} color - The background color string.
+         * @param {string} [format='hex'] - The target format.
+         * @returns {string} - Either black or white in the requested format.
+         * @example FTS.visual.contrast("#000000"); // -> "#ffffff"
+         */
         const contrast = (color, format = 'hex') => {
             const rgb = parseColor(color);
             if (!rgb) return format === 'hex' ? '#000000' : 'rgb(0,0,0)';
@@ -203,7 +509,15 @@ const FTS = (() => {
             return formatColor(res, format);
         };
 
-        // Converts a color to grayscale. Example: visual.grayscale('#007AFF')
+        /**
+         * @description Converts a color to its grayscale equivalent.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} color - The input color string.
+         * @param {string} [format='hex'] - The target format.
+         * @returns {string} - The grayscale color string.
+         * @example FTS.visual.grayscale("#007AFF"); // -> "#808080"
+         */
         const grayscale = (color, format = 'hex') => {
             const rgb = parseColor(color);
             if (!rgb) return color;
@@ -211,37 +525,19 @@ const FTS = (() => {
             return formatColor({ r: avg, g: avg, b: avg, a: rgb.a }, format);
         };
 
-        // Generates a color scheme based on a seed color. Example: visual.getColorScheme('#007AFF', 'triadic')
+        /**
+         * @description Generates a color scheme (complementary, analogous, etc.) based on a seed color.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} color - The base color string.
+         * @param {string} [type='complementary'] - Scheme type.
+         * @param {string} [format='hex'] - The target format.
+         * @returns {string[]} - An array of color strings in the scheme.
+         * @example FTS.visual.getColorScheme("#ff0000", "complementary"); // -> ["#ff0000", "#00ffff"]
+         */
         const getColorScheme = (color, type = 'complementary', format = 'hex') => {
             const rgb = parseColor(color);
             if (!rgb) return [];
-
-            const hslToRgb = (h, s, l) => {
-                s /= 100; l /= 100;
-                const k = n => (n + h / 30) % 12;
-                const a = s * Math.min(l, 1 - l);
-                const f = n => l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
-                return { r: Math.round(255 * f(0)), g: Math.round(255 * f(8)), b: Math.round(255 * f(4)), a: rgb.a };
-            };
-
-            const rgbToHsl = (r, g, b) => {
-                r /= 255; g /= 255; b /= 255;
-                const max = Math.max(r, g, b), min = Math.min(r, g, b);
-                let h, s, l = (max + min) / 2;
-                if (max === min) h = s = 0;
-                else {
-                    const d = max - min;
-                    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-                    switch (max) {
-                        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-                        case g: h = (b - r) / d + 2; break;
-                        case b: h = (r - g) / d + 4; break;
-                    }
-                    h /= 6;
-                }
-                return { h: h * 360, s: s * 100, l: l * 100 };
-            };
-
             const { h, s, l } = rgbToHsl(rgb.r, rgb.g, rgb.b);
             const schemes = {
                 'complementary': [hslToRgb((h + 180) % 360, s, l)],
@@ -250,21 +546,44 @@ const FTS = (() => {
                 'tetradic': [hslToRgb((h + 90) % 360, s, l), hslToRgb((h + 180) % 360, s, l), hslToRgb((h + 270) % 360, s, l)],
                 'monochromatic': [hslToRgb(h, s, Math.max(0, l - 20)), hslToRgb(h, s, Math.min(100, l + 20))]
             };
-
-            const result = (schemes[type.toLowerCase()] || []).map(c => formatColor(c, format));
+            const result = (schemes[type.toLowerCase()] || []).map(c => formatColor({ ...c, a: rgb.a }, format));
             return [formatColor(rgb, format), ...result];
         };
 
-        // Checks if a color is fully transparent. Example: visual.isTransparent('rgba(0,0,0,0)') -> true
+        /**
+         * @description Checks if a color is fully transparent.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} color - The color string to check.
+         * @returns {boolean} - True if transparent, false otherwise.
+         * @example FTS.visual.isTransparent("rgba(0,0,0,0)"); // -> true
+         */
         const isTransparent = (color) => {
             const rgb = hexToRgb(color);
             return rgb ? rgb.a === 0 : false;
         };
 
-        // Checks if the user's system is in dark mode. Example: visual.isDarkMode()
+        /**
+         * @description Checks if the user's system is in dark mode.
+         * @author Fish Token
+         * @version 1.1.0
+         * @returns {boolean} - True if dark mode is enabled.
+         * @example if (FTS.visual.isDarkMode()) { console.log("Dark mode active"); }
+         */
         const isDarkMode = () => window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-        // Animates a numeric property of an object. Example: visual.animate(el.style, 'opacity', 1, 1000)
+        /**
+         * @description Animates a numeric property of an object smoothly.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {object} obj - The object containing the property.
+         * @param {string} prop - The name of the property to animate.
+         * @param {number} target - The target value.
+         * @param {number} [duration=500] - Animation duration in milliseconds.
+         * @param {string} [easing='smooth'] - Easing type ('linear' or 'smooth').
+         * @param {function} [callback=null] - Function to call when animation finishes.
+         * @example FTS.visual.animate(myObj, "opacity", 1, 1000, "smooth");
+         */
         const animate = (obj, prop, target, duration = 500, easing = 'smooth', callback = null) => {
             const start = obj[prop];
             const startTime = performance.now();
@@ -285,7 +604,14 @@ const FTS = (() => {
             requestAnimationFrame(step);
         };
 
-        // Checks if an element is currently within the viewport. Example: visual.inView(document.body)
+        /**
+         * @description Checks if an element is currently in the viewport.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {HTMLElement} el - The element to check.
+         * @returns {boolean} - True if the element is in view.
+         * @example if (FTS.visual.inView(myElement)) { console.log("Visible!"); }
+         */
         const inView = (el) => {
             if (!el) return false;
             const rect = el.getBoundingClientRect();
@@ -297,7 +623,15 @@ const FTS = (() => {
             );
         };
 
-        // Displays a styled log message in a dedicated container. Example: visual.log('Hello World')
+        /**
+         * @description Displays a visual log message on the screen in a customizable container.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} msg - The message to display.
+         * @param {object} [opts={}] - Configuration options for the log.
+         * @returns {void}
+         * @example FTS.visual.log("System initialized", { color: "#00ff00" });
+         */
         const log = (msg, opts = {}) => {
             const {
                 target = null,
@@ -374,6 +708,14 @@ const FTS = (() => {
             container.scrollTop = container.scrollHeight;
         };
 
+        /**
+         * @description Creates and displays a notification banner.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {object|string} [opts={}] - Banner options or just the title string.
+         * @returns {object} - An object containing {id, dismiss}.
+         * @example FTS.visual.banner({ title: "Success", message: "File saved!", icon: "✅" });
+         */
         const banner = (opts = {}) => {
             const {
                 title = '',
@@ -488,6 +830,14 @@ const FTS = (() => {
             return { id, dismiss };
         };
 
+        /**
+         * @description Creates and displays a modal overlay (dialog) with custom content and buttons.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {object} [opts={}] - Overlay configuration.
+         * @returns {object} - An object containing {id, dismiss}.
+         * @example FTS.visual.overlay({ title: "Confirm", body: "Are you sure?", buttons: [{text: "Yes", callback: () => {}}] });
+         */
         const overlay = (opts = {}) => {
             const {
                 title = '',
@@ -569,7 +919,7 @@ const FTS = (() => {
         };
 
         return {
-            randomColor, hexToRgb, rgbToHex, brighten,
+            randomColor, hexToRgb, rgbToHex, convertColor, brighten,
             contrast, grayscale, getColorScheme, isTransparent, isDarkMode, animate, inView, log, banner, overlay
         };
     })();
@@ -578,21 +928,45 @@ const FTS = (() => {
     // TIME & FLOW CONTROL
     // -------------------------------------------------------------------------
     const time = (() => {
-        // Gets the current date in a specified format. Example: time.getDate('dd/mm/yyyy', '/')
+        /**
+         * @description Returns the current date in a specified format.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} [format='dd-mm-yyyy'] - The date format string.
+         * @param {string} [sep='-'] - The separator character.
+         * @returns {string} - The formatted date string.
+         * @example FTS.time.getDate("dd/mm/yyyy", "/"); // -> "03/02/2026"
+         */
         const getDate = (format = 'dd-mm-yyyy', sep = '-') => {
             const d = new Date();
             const y = d.getFullYear(), m = String(d.getMonth() + 1).padStart(2, '0'), dd = String(d.getDate()).padStart(2, '0');
             return format.replace('yyyy', y).replace('mm', m).replace('dd', dd).replace(/-/g, sep);
         };
 
-        // Gets the current time in a specified format. Example: time.getTime('hh-mm-ss', '-')
+        /**
+         * @description Returns the current time in a specified format.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} [format='hh:mm:ss'] - The time format string.
+         * @param {string} [sep=':'] - The separator character.
+         * @returns {string} - The formatted time string.
+         * @example FTS.time.getTime("hh:mm", ":"); // -> "14:30"
+         */
         const getTime = (format = 'hh:mm:ss', sep = ':') => {
             const d = new Date();
             const h = String(d.getHours()).padStart(2, '0'), m = String(d.getMinutes()).padStart(2, '0'), s = String(d.getSeconds()).padStart(2, '0');
             return format.replace('hh', h).replace('mm', m).replace('ss', s).replace(/:/g, sep);
         };
 
-        // Formats a date relative to now. Example: time.formatRelative(new Date(Date.now() - 60000)) -> '1 minute ago'
+        /**
+         * @description Returns a relative time string (e.g., "2 hours ago").
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {Date} date - The date to compare with now.
+         * @param {string} [locale='en'] - The locale for formatting.
+         * @returns {string} - The relative time string.
+         * @example FTS.time.formatRelative(new Date(Date.now() - 3600000)); // -> "1 hour ago"
+         */
         const formatRelative = (date, locale = 'en') => {
             const diff = Math.floor((date - new Date()) / 1000);
             const rtf = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' });
@@ -609,7 +983,15 @@ const FTS = (() => {
             }
         };
 
-        // Limits the rate at which a function can fire. Example: time.debounce(() => console.log('Hi'), 500)
+        /**
+         * @description Debounces a function execution.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {function} fn - The function to debounce.
+         * @param {number} [delay=250] - Delay in milliseconds.
+         * @returns {function} - The debounced function.
+         * @example const save = FTS.time.debounce(() => console.log("Saved"), 1000);
+         */
         const debounce = (fn, delay = 250) => {
             let timeout;
             return (...args) => {
@@ -618,7 +1000,15 @@ const FTS = (() => {
             };
         };
 
-        // Ensures a function is called at most once in a specified period. Example: time.throttle(() => console.log('Hi'), 500)
+        /**
+         * @description Throttles a function execution.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {function} fn - The function to throttle.
+         * @param {number} [limit=250] - Interval in milliseconds.
+         * @returns {function} - The throttled function.
+         * @example window.onscroll = FTS.time.throttle(() => console.log("Scroll"), 100);
+         */
         const throttle = (fn, limit = 250) => {
             let lastCall = 0;
             return (...args) => {
@@ -630,7 +1020,14 @@ const FTS = (() => {
             };
         };
 
-        // Pauses execution for a specified duration. Example: await time.sleep(1000)
+        /**
+         * @description Pauses execution for a specified duration.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {number} [ms=1000] - Time to sleep in milliseconds.
+         * @returns {Promise<void>} - A promise that resolves after the duration.
+         * @example await FTS.time.sleep(2000);
+         */
         const sleep = (ms = 1000) => new Promise(res => setTimeout(res, ms));
 
         return { getDate, getTime, formatRelative, debounce, throttle, sleep };
@@ -640,13 +1037,38 @@ const FTS = (() => {
     // DOM MANIPULATION
     // -------------------------------------------------------------------------
     const dom = (() => {
-        // Selects the first element matching a CSS selector. Example: dom.$('.my-class')
+        /**
+         * @description Selects a single element from the DOM.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} s - CSS selector.
+         * @param {Document|HTMLElement} [root=document] - Root element to search from.
+         * @returns {HTMLElement|null} - The matched element or null.
+         * @example const header = FTS.dom.$("header");
+         */
         const $ = (s, root = document) => root.querySelector(s);
 
-        // Selects all elements matching a CSS selector as an array. Example: dom.$$('div')
+        /**
+         * @description Selects multiple elements from the DOM.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} s - CSS selector.
+         * @param {Document|HTMLElement} [root=document] - Root element to search from.
+         * @returns {HTMLElement[]} - Array of matched elements.
+         * @example const buttons = FTS.dom.$$(".btn");
+         */
         const $$ = (s, root = document) => [...root.querySelectorAll(s)];
 
-        // Creates a new HTML element with attributes and children. Example: dom.create('div', { class: 'box' }, ['Hello'])
+        /**
+         * @description Creates a new DOM element with attributes and children.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} [tag='div'] - HTML tag name.
+         * @param {object} [attrs={}] - Attributes to set on the element.
+         * @param {Array<string|HTMLElement>} [children=[]] - Child elements or text strings.
+         * @returns {HTMLElement} - The created element.
+         * @example const div = FTS.dom.create("div", { class: "box" }, ["Hello World"]);
+         */
         const create = (tag = 'div', attrs = {}, children = []) => {
             const el = document.createElement(tag);
             Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
@@ -657,17 +1079,47 @@ const FTS = (() => {
             return el;
         };
 
-        // Adds one or more event listeners to an element. Example: dom.on(el, 'click focus', () => console.log('Hi'))
+        /**
+         * @description Attaches one or more event listeners to an element.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {HTMLElement} el - Target element.
+         * @param {string} events - Space-separated event names.
+         * @param {function} fn - Event handler function.
+         * @param {object} [opts={}] - Event listener options.
+         * @returns {void}
+         * @example FTS.dom.on(myBtn, "click touchstart", () => console.log("Pressed"));
+         */
         const on = (el, events, fn, opts = {}) => {
             events.split(' ').forEach(e => el.addEventListener(e, fn, opts));
         };
 
-        // Removes one or more event listeners from an element. Example: dom.off(el, 'click', myFunc)
+        /**
+         * @description Removes one or more event listeners from an element.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {HTMLElement} el - Target element.
+         * @param {string} events - Space-separated event names.
+         * @param {function} fn - Event handler function to remove.
+         * @param {object} [opts={}] - Event listener options.
+         * @returns {void}
+         * @example FTS.dom.off(myBtn, "click", myHandler);
+         */
         const off = (el, events, fn, opts = {}) => {
             events.split(' ').forEach(e => el.removeEventListener(e, fn, opts));
         };
 
-        // Attaches an event listener to a parent for delegated child events. Example: dom.delegate(list, 'click', 'li', (e, target) => console.log(target))
+        /**
+         * @description Sets up event delegation.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {HTMLElement} root - Parent element.
+         * @param {string} type - Event type.
+         * @param {string} selector - CSS selector for child elements.
+         * @param {function} fn - Handler function.
+         * @returns {void}
+         * @example FTS.dom.delegate(myList, "click", "li", (e, target) => console.log(target.innerText));
+         */
         const delegate = (root, type, selector, fn) => {
             on(root, type, (e) => {
                 const target = e.target.closest(selector);
@@ -675,23 +1127,72 @@ const FTS = (() => {
             });
         };
 
-        // Gets or sets an attribute on an element. Example: dom.attr(el, 'data-id', '123')
-        const attr = (el, name, value) => {
-            if (value === undefined) return el.getAttribute(name);
-            if (value === null) el.removeAttribute(name);
-            else el.setAttribute(name, value);
+        /**
+         * @description Gets, sets, or removes an attribute.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {HTMLElement} el - Target element.
+         * @param {string} name - Attribute name.
+         * @param {string|null} [value] - Value to set (or null to remove).
+         * @param {string} [action='auto'] - Action to perform ('get', 'set', 'remove', 'auto').
+         * @returns {string|null|void} - Attribute value if getting.
+         * @example FTS.dom.attr(myEl, "data-id", "123"); // Set
+         */
+        const attr = (el, name, value, action = 'auto') => {
+            if (action === 'remove' || (action === 'auto' && value === null)) {
+                el.removeAttribute(name);
+                return;
+            }
+            if (action === 'get' || (action === 'auto' && value === undefined)) {
+                return el.getAttribute(name);
+            }
+            el.setAttribute(name, value);
         };
 
-        // Toggles a CSS class on an element. Example: dom.toggleClass(el, 'active')
+        /**
+         * @description Toggles a CSS class on an element.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {HTMLElement} el - Target element.
+         * @param {string} cls - Class name.
+         * @param {boolean} [force] - Force add/remove.
+         * @returns {boolean} - True if class exists after toggle.
+         * @example FTS.dom.toggleClass(myEl, "active");
+         */
         const toggleClass = (el, cls, force) => el.classList.toggle(cls, force);
 
-        // Toggles full-screen mode for an element. Example: dom.toggleFullscreen()
+        /**
+         * @description Toggles fullscreen mode for an element.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {HTMLElement} [el=document.documentElement] - Element to make fullscreen.
+         * @returns {void}
+         * @example FTS.dom.toggleFullscreen(document.body);
+         */
         const toggleFullscreen = (el = document.documentElement) => {
-            if (!document.fullscreenElement) el.requestFullscreen().catch(() => {});
-            else document.exitFullscreen();
+            if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
+                if (el.requestFullscreen) el.requestFullscreen();
+                else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+                else if (el.mozRequestFullScreen) el.mozRequestFullScreen();
+                else if (el.msRequestFullscreen) el.msRequestFullscreen();
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+                else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
+                else if (document.msExitFullscreen) document.msExitFullscreen();
+            }
         };
 
-        // Triggers a file download from a URL. Example: dom.download('https://example.com/file.png', 'my-image.png')
+        /**
+         * @description Triggers a file download.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} url - Resource URL.
+         * @param {string} [name='download'] - Filename for download.
+         * @param {boolean} [useBlob=false] - Whether to fetch as blob first.
+         * @returns {Promise<void>}
+         * @example FTS.dom.download("image.png", "my-photo.png");
+         */
         const download = async (url, name = 'download', useBlob = false) => {
             let href = url;
             if (useBlob) {
@@ -704,52 +1205,136 @@ const FTS = (() => {
             if (useBlob) URL.revokeObjectURL(href);
         };
 
-        // Provides methods for interacting with the system clipboard. Example: dom.clipboard.copy('Hello')
+        /**
+         * @description Clipboard utilities for text and rich data.
+         */
         const clipboard = {
-            // Copies text to the clipboard. Example: dom.clipboard.copy('Hello')
+            /**
+             * @description Copies text to clipboard.
+             * @author Fish Token
+             * @version 1.1.0
+             * @param {string} val - Text to copy.
+             * @returns {Promise<void>}
+             */
             copy: (val) => navigator.clipboard.writeText(val),
-            // Reads text from the clipboard. Example: await dom.clipboard.read()
+            /**
+             * @description Reads text from clipboard.
+             * @author Fish Token
+             * @version 1.1.0
+             * @returns {Promise<string>}
+             */
             read: () => navigator.clipboard.readText(),
-            // Copies rich data to the clipboard. Example: dom.clipboard.copyOther(data)
+            /**
+             * @description Copies rich data to clipboard.
+             * @author Fish Token
+             * @version 1.1.0
+             * @param {any} val - Data to copy.
+             * @returns {Promise<void>}
+             */
             copyOther: (val) => navigator.clipboard.write(val),
-            // Reads rich data from the clipboard. Example: await dom.clipboard.readOther()
+            /**
+             * @description Reads rich data from clipboard.
+             * @author Fish Token
+             * @version 1.1.0
+             * @returns {Promise<any>}
+             */
             readOther: () => navigator.clipboard.read(),
         };
 
-        // Provides methods for local and session storage. Example: dom.storage.set('key', 'value')
+        /**
+         * @description Storage utilities with JSON support.
+         */
         const storage = {
             _getStore: (type) => type === 'session' ? window.sessionStorage : window.localStorage,
-            // Sets an item in storage. Example: dom.storage.set('user', {name: 'Fish'}, 'session')
+            /**
+             * @description Sets an item in storage.
+             * @author Fish Token
+             * @version 1.1.0
+             * @param {string} k - Key.
+             * @param {any} v - Value (auto-stringified).
+             * @param {string} [type='local'] - 'local' or 'session'.
+             * @returns {void}
+             */
             set: (k, v, type = 'local') => storage._getStore(type).setItem(k, JSON.stringify(v)),
-            // Gets an item from storage. Example: dom.storage.get('user')
+            /**
+             * @description Gets an item from storage.
+             * @author Fish Token
+             * @version 1.1.0
+             * @param {string} k - Key.
+             * @param {string} [type='local'] - 'local' or 'session'.
+             * @returns {any} - Parsed value or raw string.
+             */
             get: (k, type = 'local') => {
                 const item = storage._getStore(type).getItem(k);
                 try { return JSON.parse(item); } catch { return item; }
             },
-            // Removes an item from storage. Example: dom.storage.remove('user')
+            /**
+             * @description Removes an item from storage.
+             * @author Fish Token
+             * @version 1.1.0
+             * @param {string} k - Key.
+             * @param {string} [type='local'] - 'local' or 'session'.
+             * @returns {void}
+             */
             remove: (k, type = 'local') => storage._getStore(type).removeItem(k),
-            // Clears all items from storage. Example: dom.storage.clear('local')
+            /**
+             * @description Clears all items from storage.
+             * @author Fish Token
+             * @version 1.1.0
+             * @param {string} [type='local'] - 'local' or 'session'.
+             * @returns {void}
+             */
             clear: (type = 'local') => storage._getStore(type).clear()
         };
 
-        // Provides methods for cookie management. Example: dom.cookie.set('theme', 'dark')
+        /**
+         * @description Cookie management utilities.
+         */
         const cookie = {
-            // Sets a cookie with optional configuration. Example: dom.cookie.set('pref', 'val', { days: 30 })
+            /**
+             * @description Sets a cookie.
+             * @author Fish Token
+             * @version 1.1.0
+             * @param {string} name - Cookie name.
+             * @param {string} val - Cookie value.
+             * @param {object} [config={}] - Cookie configuration.
+             * @returns {void}
+             */
             set: (name, val, config = {}) => {
                 const d = new Date();
                 d.setTime(d.getTime() + (config.days || 7) * 864e5);
                 document.cookie = `${name}=${val};expires=${d.toUTCString()};path=/;SameSite=${config.sameSite || 'Lax'};Secure=${config.secure || false}`;
             },
-            // Gets a cookie by name. Example: dom.cookie.get('theme')
+            /**
+             * @description Gets a cookie.
+             * @author Fish Token
+             * @version 1.1.0
+             * @param {string} name - Cookie name.
+             * @returns {string|null} - Cookie value.
+             */
             get: (name) => {
                 const v = document.cookie.match(`(^|;) ?${name}=([^;]*)(;|$)`);
                 return v ? v[2] : null;
             },
-            // Deletes a cookie by name. Example: dom.cookie.remove('theme')
+            /**
+             * @description Removes a cookie.
+             * @author Fish Token
+             * @version 1.1.0
+             * @param {string} name - Cookie name.
+             * @returns {void}
+             */
             remove: (name) => cookie.set(name, '', { days: -1 }),
         };
 
-        // Waits for an element to appear in the DOM. Example: await dom.wait('#target')
+        /**
+         * @description Waits for an element to appear in the DOM.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} selector - CSS selector.
+         * @param {number} [timeout=5000] - Timeout in milliseconds.
+         * @returns {Promise<HTMLElement>} - The element once it appears.
+         * @example const el = await FTS.dom.wait("#dynamic-el");
+         */
         const wait = (selector, timeout = 5000) => new Promise((res, rej) => {
             const el = $(selector);
             if (el) return res(el);
@@ -769,7 +1354,16 @@ const FTS = (() => {
             }, timeout);
         });
 
-        // Executes a function when an element becomes visible in the viewport. Example: dom.onVisible(el, () => console.log('Visible!'))
+        /**
+         * @description Executes a callback when an element becomes visible.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {HTMLElement} el - Element to watch.
+         * @param {function} fn - Callback function.
+         * @param {number} [threshold=0.1] - Visibility threshold (0-1).
+         * @returns {void}
+         * @example FTS.dom.onVisible(myImg, (el) => el.src = "real.jpg");
+         */
         const onVisible = (el, fn, threshold = 0.1) => {
             const observer = new IntersectionObserver(([entry]) => {
                 if (entry.isIntersecting) {
@@ -780,20 +1374,61 @@ const FTS = (() => {
             observer.observe(el);
         };
 
-        // Executes a function when a click occurs outside the specified element(s). Example: dom.onClickOutside(el, () => el.hide())
-        const onClickOutside = (el, fn) => {
+        /**
+         * @description Detects clicks outside of specific elements.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {HTMLElement|HTMLElement[]} el - Element(s) to consider "inside".
+         * @param {function} fn - Callback for outside clicks.
+         * @param {object} [opts={}] - Configuration (interval, lifespan, remove).
+         * @returns {function} - Cleanup function to stop listening.
+         * @example FTS.dom.onClickOutside(myMenu, () => closeMenu());
+         */
+        const onClickOutside = (el, fn, opts = {}) => {
+            const { interval = null, lifespan = null, remove = false } = opts;
+            const elements = Array.isArray(el) ? el : [el];
+            let timer = null, expiryTimer = null;
+
             const handler = (e) => {
-                const elements = Array.isArray(el) ? el : [el];
                 const isInside = elements.some(element => element.contains(e.target));
                 if (!isInside) {
                     fn(e);
-                    off(document, 'click', handler);
+                    if (!interval) cleanup();
                 }
             };
+
+            const cleanup = () => {
+                if (timer) clearInterval(timer);
+                off(document, 'click', handler);
+                if (expiryTimer) clearTimeout(expiryTimer);
+            };
+
+            if (remove) return cleanup();
+
+            if (interval) {
+                const ms = (interval === 'always' || interval === 'constant') ? 100 : interval;
+                timer = setInterval(() => {
+                    const isInside = elements.some(element => element.contains(document.activeElement));
+                    if (!isInside && document.activeElement !== document.body) fn({ target: document.activeElement });
+                }, ms);
+            }
+
             on(document, 'click', handler);
+            if (lifespan) expiryTimer = setTimeout(cleanup, lifespan);
+
+            return cleanup;
         };
 
-        // Fades an element in by transitioning its opacity. Example: dom.fadeIn(el, 500)
+        /**
+         * @description Fades an element in using CSS transitions.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {HTMLElement} el - Target element.
+         * @param {number} [duration=400] - Duration in milliseconds.
+         * @param {string} [display='block'] - Target display property.
+         * @returns {void}
+         * @example FTS.dom.fadeIn(myEl, 500);
+         */
         const fadeIn = (el, duration = 400, display = 'block') => {
             el.style.opacity = 0;
             el.style.display = display;
@@ -801,7 +1436,15 @@ const FTS = (() => {
             setTimeout(() => el.style.opacity = 1, 10);
         };
 
-        // Fades an element out by transitioning its opacity. Example: dom.fadeOut(el, 500)
+        /**
+         * @description Fades an element out using CSS transitions.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {HTMLElement} el - Target element.
+         * @param {number} [duration=400] - Duration in milliseconds.
+         * @returns {void}
+         * @example FTS.dom.fadeOut(myEl, 500);
+         */
         const fadeOut = (el, duration = 400) => {
             el.style.opacity = 1;
             el.style.transition = `opacity ${duration}ms`;
@@ -809,7 +1452,16 @@ const FTS = (() => {
             setTimeout(() => el.style.display = 'none', duration);
         };
 
-        // Opens a URL in a centered popup window or a new tab. Example: dom.popup('https://google.com', { w: 800, h: 600 })
+        /**
+         * @description Opens a centered popup window.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} url - URL to open.
+         * @param {string|object} [target='_blank'] - Window target or features object.
+         * @param {object} [features={}] - Popup features (w, h, tab).
+         * @returns {Window|null} - The opened window instance.
+         * @example FTS.dom.popup("https://google.com", { w: 800, h: 600 });
+         */
         const popup = (url, target = '_blank', features = {}) => {
             if (typeof target === 'object') {
                 features = target;
@@ -822,7 +1474,15 @@ const FTS = (() => {
             return window.open(url, target, `width=${w},height=${h},top=${top},left=${left},scrollbars=yes,resizable=yes`);
         };
 
-        // Appends HTML strings or elements to a parent element. Example: dom.append('#container', '<p>New</p>', el)
+        /**
+         * @description Appends children to a parent element.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {HTMLElement|string} parent - Parent element or selector.
+         * @param {...(string|HTMLElement)} children - Children to append.
+         * @returns {HTMLElement|void} - The parent element.
+         * @example FTS.dom.append("#container", "<span>New</span>", myDiv);
+         */
         const append = (parent, ...children) => {
             const p = typeof parent === 'string' ? $(parent) : parent;
             if (!p) return;
@@ -837,7 +1497,15 @@ const FTS = (() => {
             return p;
         };
 
-        // Removes elements from the DOM based on a selector or element reference. Example: dom.remove('.ad-banner')
+        /**
+         * @description Removes element(s) from the DOM.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string|HTMLElement} s - Element or CSS selector.
+         * @param {Document|HTMLElement} [root=document] - Root to search from.
+         * @returns {void}
+         * @example FTS.dom.remove(".ad-box");
+         */
         const remove = (s, root = document) => {
             const elements = typeof s === 'string' ? $$(s, root) : [s];
             elements.forEach(el => el?.remove());
@@ -854,7 +1522,15 @@ const FTS = (() => {
     // DATA UTILITIES
     // -------------------------------------------------------------------------
     const data = (() => {
-        // Sets the document title and meta tags. Example: data.setMeta('Home', { description: 'Welcome' })
+        /**
+         * @description Sets the page title and meta tags for SEO and Social Media.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} [title] - The page title.
+         * @param {object} [tags={}] - Key-value pairs of meta names/properties.
+         * @returns {void}
+         * @example FTS.data.setMeta("My App", { description: "Best app ever", "og:image": "logo.png" });
+         */
         const setMeta = (title, tags = {}) => {
             if (title) document.title = title;
             Object.entries(tags).forEach(([k, v]) => {
@@ -867,14 +1543,28 @@ const FTS = (() => {
             });
         };
 
-        // Creates a deep copy of an object or array. Example: data.clone({ a: 1, b: { c: 2 } })
+        /**
+         * @description Creates a deep clone of an object or array.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {any} obj - The object or array to clone.
+         * @returns {any} - The cloned data.
+         * @example const copy = FTS.data.clone(originalObj);
+         */
         const clone = (obj) => {
             if (obj === null || typeof obj !== 'object') return obj;
             if (Array.isArray(obj)) return obj.map(clone);
             return Object.fromEntries(Object.entries(obj).map(([k, v]) => [k, clone(v)]));
         };
 
-        // Deeply merges multiple objects into one. Example: data.mergeDeep({ a: 1 }, { b: { c: 2 } })
+        /**
+         * @description Deep merges multiple objects recursively.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {...object} objs - Objects to merge.
+         * @returns {object} - The merged object.
+         * @example const settings = FTS.data.mergeDeep(defaults, userSettings);
+         */
         const mergeDeep = (...objs) => {
             const result = {};
             objs.forEach(obj => {
@@ -889,7 +1579,15 @@ const FTS = (() => {
             return result;
         };
 
-        // Checks if two values are deeply equal. Example: data.deepEqual({ a: 1 }, { a: 1 }) -> true
+        /**
+         * @description Performs a deep equality check between two values.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {any} a - First value.
+         * @param {any} b - Second value.
+         * @returns {boolean} - True if values are deeply equal.
+         * @example if (FTS.data.deepEqual(objA, objB)) { ... }
+         */
         const deepEqual = (a, b) => {
             if (a === b) return true;
             if (a && b && typeof a === 'object' && typeof b === 'object') {
@@ -900,10 +1598,24 @@ const FTS = (() => {
             return false;
         };
 
-        // Returns an array of unique elements. Example: data.unique([1, 1, 2]) -> [1, 2]
+        /**
+         * @description Removes duplicates from an array and returns unique values.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {Array} arr - The input array.
+         * @returns {Array} - Array with unique elements.
+         * @example const uniqueList = FTS.data.unique([1, 1, 2, 3, 3]);
+         */
         const unique = (arr) => [...new Set(arr)];
 
-        // Randomly shuffles an array. Example: data.shuffle([1, 2, 3])
+        /**
+         * @description Shuffles an array randomly using the Fisher-Yates algorithm.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {Array} arr - The array to shuffle.
+         * @returns {Array} - A new shuffled array.
+         * @example const deck = FTS.data.shuffle([1, 2, 3, 4, 5]);
+         */
         const shuffle = (arr) => {
             const a = [...arr];
             for (let i = a.length - 1; i > 0; i--) {
@@ -913,14 +1625,29 @@ const FTS = (() => {
             return a;
         };
 
-        // Groups an array of objects by a key. Example: data.groupBy([{type:'a'}, {type:'b'}], 'type')
+        /**
+         * @description Groups an array of objects by a specific key.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {object[]} arr - Array of objects.
+         * @param {string} key - Key to group by.
+         * @returns {object} - Grouped object.
+         * @example FTS.data.groupBy(users, "role");
+         */
         const groupBy = (arr, key) => arr.reduce((acc, obj) => {
             const k = obj[key];
             (acc[k] = acc[k] || []).push(obj);
             return acc;
         }, {});
 
-        // Checks if a value is empty (null, empty string, array, or object). Example: data.isEmpty({}) -> true
+        /**
+         * @description Checks if a value is empty (null, undefined, "", [], {}).
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {any} val - Value to check.
+         * @returns {boolean} - True if empty.
+         * @example FTS.data.isEmpty({});
+         */
         const isEmpty = (val) => {
             if (val == null) return true;
             if (typeof val === 'string' || Array.isArray(val)) return val.length === 0;
@@ -928,16 +1655,48 @@ const FTS = (() => {
             return false;
         };
 
-        // Picks specific keys from an object. Example: data.pick({a:1, b:2}, ['a']) -> {a:1}
+        /**
+         * @description Picks specific keys from an object.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {object} obj - Source object.
+         * @param {string[]} keys - Keys to pick.
+         * @returns {object} - New object with picked keys.
+         * @example FTS.data.pick(user, ["id", "name"]);
+         */
         const pick = (obj, keys) => Object.fromEntries(keys.filter(k => k in obj).map(k => [k, obj[k]]));
 
-        // Omits specific keys from an object. Example: data.omit({a:1, b:2}, ['a']) -> {b:2}
+        /**
+         * @description Omits specific keys from an object.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {object} obj - Source object.
+         * @param {string[]} keys - Keys to omit.
+         * @returns {object} - New object with keys omitted.
+         * @example FTS.data.omit(user, ["password"]);
+         */
         const omit = (obj, keys) => Object.fromEntries(Object.entries(obj).filter(([k]) => !keys.includes(k)));
 
-        // Chunks an array into smaller arrays of a specified size. Example: data.chunk([1, 2, 3, 4], 2) -> [[1,2], [3,4]]
+        /**
+         * @description Chunks an array into smaller arrays of a fixed size.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {Array} arr - Array to chunk.
+         * @param {number} [size=1] - Chunk size.
+         * @returns {Array[]} - Array of chunks.
+         * @example FTS.data.chunk([1, 2, 3, 4], 2);
+         */
         const chunk = (arr, size = 1) => Array.from({ length: Math.ceil(arr.length / size) }, (_, i) => arr.slice(i * size, (i + 1) * size));
 
-        // Formats a number of bytes into a human-readable string. Example: data.formatBytes(1024) -> '1 KB'
+        /**
+         * @description Formats bytes into a human-readable string (KB, MB, GB).
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {number} bytes - Number of bytes.
+         * @param {number} [decimals=2] - Decimal places.
+         * @returns {string} - Formatted size string.
+         * @example FTS.data.formatBytes(1048576);
+         */
         const formatBytes = (bytes, decimals = 2) => {
             if (bytes === 0) return '0 Bytes';
             const k = 1024, dm = Math.max(0, decimals);
@@ -956,39 +1715,114 @@ const FTS = (() => {
     // STRING UTILITIES
     // -------------------------------------------------------------------------
     const string = (() => {
-        // Capitalizes the first letter of a string. Example: string.capitalize('hello') -> 'Hello'
+        /**
+         * @description Capitalizes the first letter of a string.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} str - Input string.
+         * @returns {string} - Capitalized string.
+         * @example FTS.string.capitalize("hello");
+         */
         const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
-        // Converts a string to title case. Example: string.titleCase('hello world') -> 'Hello World'
+        /**
+         * @description Converts a string to Title Case.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} str - Input string.
+         * @returns {string} - Title cased string.
+         * @example FTS.string.titleCase("hello world");
+         */
         const titleCase = (str) => str.replace(/\w\S*/g, (txt) => capitalize(txt.toLowerCase()));
 
-        // Converts a string to camel case. Example: string.camelCase('hello-world') -> 'helloWorld'
+        /**
+         * @description Converts a string to camelCase.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} str - Input string.
+         * @returns {string} - Camel cased string.
+         * @example FTS.string.camelCase("hello-world");
+         */
         const camelCase = (str) => str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (_, chr) => chr.toUpperCase());
 
-        // Converts a string to snake case. Example: string.snakeCase('helloWorld') -> 'hello_world'
+        /**
+         * @description Converts a string to kebab-case.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} str - Input string.
+         * @returns {string} - Kebab cased string.
+         * @example FTS.string.kebabCase("Hello World");
+         */
+        const kebabCase = (str) => str.replace(/\s+/g, '-').toLowerCase();
+
+        /**
+         * @description Converts a string to snake_case.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} str - Input string.
+         * @returns {string} - Snake cased string.
+         * @example FTS.string.snakeCase("helloWorld");
+         */
         const snakeCase = (str) => str.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g).map(x => x.toLowerCase()).join('_');
 
-        // Converts a string to a URL-friendly slug. Example: string.slugify('Hello World!') -> 'hello-world'
+        /**
+         * @description Converts a string to a URL-friendly slug.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} str - Input string.
+         * @returns {string} - Slugified string.
+         * @example FTS.string.slugify("Hello World!");
+         */
         const slugify = (str) => str.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
 
-        // Formats a number as a currency string. Example: string.currency(1234.56, 'USD') -> '$1,234.56'
+        /**
+         * @description Formats a number as a currency string.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {number} val - Amount.
+         * @param {string} [symbol='$'] - Currency symbol or ISO code.
+         * @param {string} [locale='en-US'] - Formatting locale.
+         * @returns {string} - Formatted currency string.
+         * @example FTS.string.currency(1234.56, "USD");
+         */
         const currency = (val, symbol = '$', locale = 'en-US') => new Intl.NumberFormat(locale, { style: 'currency', currency: symbol === '$' ? 'USD' : symbol }).format(val);
 
-        // Formats a 10-digit string into a US phone number. Example: string.formatPhone('1234567890') -> '(123) 456-7890'
+        /**
+         * @description Formats a string as a US phone number.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} str - Raw phone string.
+         * @returns {string} - Formatted phone string.
+         * @example FTS.string.formatPhone("1234567890");
+         */
         const formatPhone = (str) => {
             const cleaned = ('' + str).replace(/\D/g, '');
             const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
             return match ? `(${match[1]}) ${match[2]}-${match[3]}` : str;
         };
 
-        return { capitalize, titleCase, camelCase, snakeCase, slugify, currency, formatPhone };
+        return { capitalize, titleCase, camelCase, kebabCase, snakeCase, slugify, currency, formatPhone };
     })();
 
     // -------------------------------------------------------------------------
     // NETWORK UTILITIES
     // -------------------------------------------------------------------------
     const net = (() => {
-        // Performs an asynchronous HTTP request with retry logic. Example: await net.request({ url: '...' })
+        /**
+         * @description Performs an asynchronous HTTP request with retry logic.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {object} options - Request configuration.
+         * @param {string} options.url - The URL to fetch.
+         * @param {string} [options.method='GET'] - HTTP method.
+         * @param {object} [options.headers={}] - HTTP headers.
+         * @param {object} [options.body=null] - Request body (will be stringified).
+         * @param {number} [options.retries=2] - Number of retry attempts on failure.
+         * @param {number} [options.interval=1000] - Delay between retries in ms.
+         * @param {number} [options.delay=0] - Initial delay before first request in ms.
+         * @returns {Promise<any>} - The parsed JSON response.
+         * @example const data = await FTS.net.request({ url: "https://api.example.com/data" });
+         */
         const request = async ({ url, method = 'GET', headers = {}, body = null, retries = 2, interval = 1000, delay = 0 }) => {
             if (delay) await time.sleep(delay);
             let lastErr;
@@ -1005,32 +1839,111 @@ const FTS = (() => {
             throw lastErr;
         };
 
-        // Provides a collection of common validation functions. Example: net.validate.email('test@test.com')
+        /**
+         * @description Data validation utilities for common formats.
+         */
         const validate = {
-            // Validates an email address format. Example: net.validate.email('me@home.com')
+            /**
+             * @description Validates an email address.
+             * @author Fish Token
+             * @version 1.1.0
+             * @param {string} s - Input string.
+             * @returns {boolean} - True if valid.
+             * @example FTS.net.validate.email("test@example.com");
+             */
             email: (s) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s),
-            // Validates a URL format. Example: net.validate.url('https://google.com')
+            /**
+             * @description Validates a URL.
+             * @author Fish Token
+             * @version 1.1.0
+             * @param {string} s - Input string.
+             * @returns {boolean} - True if valid.
+             * @example FTS.net.validate.url("https://google.com");
+             */
             url: (s) => /^https?:\/\/[^\s/$.?#].[^\s]*$/.test(s),
-            // Validates a phone number format. Example: net.validate.phone('123-456-7890')
+            /**
+             * @description Validates a phone number.
+             * @author Fish Token
+             * @version 1.1.0
+             * @param {string} s - Input string.
+             * @returns {boolean} - True if valid.
+             * @example FTS.net.validate.phone("1234567890");
+             */
             phone: (s) => /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/.test(s),
-            // Validates a hex color code. Example: net.validate.hex('#007AFF')
+            /**
+             * @description Validates a hex color string.
+             * @author Fish Token
+             * @version 1.1.0
+             * @param {string} s - Input string.
+             * @returns {boolean} - True if valid.
+             * @example FTS.net.validate.hex("#ff0000");
+             */
             hex: (s) => /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/.test(s),
-            // Validates an IPv4 address. Example: net.validate.ip('192.168.1.1')
+            /**
+             * @description Validates an IP address (v4).
+             * @author Fish Token
+             * @version 1.1.0
+             * @param {string} s - Input string.
+             * @returns {boolean} - True if valid.
+             * @example FTS.net.validate.ip("127.0.0.1");
+             */
             ip: (s) => /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(s),
-            // Validates if a string is valid JSON. Example: net.validate.json('{"a":1}')
+            /**
+             * @description Validates if a string is valid JSON.
+             * @author Fish Token
+             * @version 1.1.0
+             * @param {string} s - Input string.
+             * @returns {boolean} - True if valid.
+             * @example FTS.net.validate.json('{"a":1}');
+             */
             json: (s) => { try { JSON.parse(s); return true; } catch { return false; } },
-            // Validates if a value is a number. Example: net.validate.number('123.45')
+            /**
+             * @description Validates if a value is a number.
+             * @author Fish Token
+             * @version 1.1.0
+             * @param {any} s - Input value.
+             * @returns {boolean} - True if numeric.
+             * @example FTS.net.validate.number("123");
+             */
             number: (s) => !isNaN(parseFloat(s)) && isFinite(s),
-            // Validates if a string is alphanumeric. Example: net.validate.alphanumeric('User123')
+            /**
+             * @description Validates if a string is alphanumeric.
+             * @author Fish Token
+             * @version 1.1.0
+             * @param {string} s - Input string.
+             * @returns {boolean} - True if alphanumeric.
+             * @example FTS.net.validate.alphanumeric("abc123");
+             */
             alphanumeric: (s) => /^[a-z0-9]+$/i.test(s),
-            // Validates if a string is a valid date. Example: net.validate.date('2025-01-01')
+            /**
+             * @description Validates if a string is a valid date.
+             * @author Fish Token
+             * @version 1.1.0
+             * @param {string} s - Input string.
+             * @returns {boolean} - True if valid.
+             * @example FTS.net.validate.date("2026-02-03");
+             */
             date: (s) => !isNaN(Date.parse(s)),
-            // Evaluates password strength and validity. Example: net.validate.password('MyStrongP@ss1')
+            /**
+             * @description Analyzes password strength and validity.
+             * @author Fish Token
+             * @version 1.1.0
+             * @param {string} s - Password string.
+             * @returns {object} - { score, valid }.
+             * @example FTS.net.validate.password("P@ssw0rd123");
+             */
             password: (s) => ({
                 score: (s.length > 8) + (/[A-Z]/.test(s)) + (/[0-9]/.test(s)) + (/[^A-Za-z0-9]/.test(s)),
                 valid: s.length >= 8
             }),
-            // Validates a credit card number using the Luhn algorithm. Example: net.validate.creditCard('4111...')
+            /**
+             * @description Validates a credit card number using the Luhn algorithm.
+             * @author Fish Token
+             * @version 1.1.0
+             * @param {string|number} s - Card number.
+             * @returns {boolean} - True if valid.
+             * @example FTS.net.validate.creditCard("4532...");
+             */
             creditCard: (s) => {
                 const arr = (s + '').split('').reverse().map(x => parseInt(x));
                 const sum = arr.reduce((acc, val, i) => i % 2 !== 0 ? acc + (val * 2 > 9 ? val * 2 - 9 : val * 2) : acc + val, 0);
@@ -1038,16 +1951,43 @@ const FTS = (() => {
             }
         };
 
-        // Serializes an object into a URL query string. Example: net.serialize({ a: 1, b: 2 }) -> 'a=1&b=2'
+        /**
+         * @description Serializes an object into a URL query string.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {object} obj - The object to serialize.
+         * @returns {string} - URL-encoded query string.
+         * @example FTS.net.serialize({ id: 1, type: "user" });
+         */
         const serialize = (obj) => new URLSearchParams(obj).toString();
 
-        // Parses query parameters from a URL into an object. Example: net.getParams('?id=123') -> { id: '123' }
+        /**
+         * @description Extracts query parameters from a URL.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} [url=window.location.href] - The URL to parse.
+         * @returns {object} - Key-value pairs of parameters.
+         * @example const params = FTS.net.getParams();
+         */
         const getParams = (url = window.location.href) => Object.fromEntries(new URL(url).searchParams);
 
-        // Checks if a URL has the same origin as the current page. Example: net.isSameOrigin('/api') -> true
+        /**
+         * @description Checks if a URL has the same origin as the current page.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} url - URL to check.
+         * @returns {boolean} - True if same origin.
+         * @example FTS.net.isSameOrigin("https://niche-site.netlify.app/");
+         */
         const isSameOrigin = (url) => new URL(url, window.location.origin).origin === window.location.origin;
 
-        // Attempts to detect if an ad blocker is active. Example: await net.detectAdblock()
+        /**
+         * @description Attempts to detect if an adblocker is active using network and DOM checks.
+         * @author Fish Token
+         * @version 1.1.0
+         * @returns {Promise<boolean>} - True if an adblocker is detected.
+         * @example const blocked = await FTS.net.detectAdblock();
+         */
         const detectAdblock = async () => {
             const networkCheck = async () => {
                 const adScripts = [
@@ -1055,12 +1995,16 @@ const FTS = (() => {
                     'https://googleads.g.doubleclick.net/pagead/adsbygoogle.js',
                     'https://static.ads-twitter.com/uwt.js',
                     'https://www.google-analytics.com/analytics.js',
-                    'https://connect.facebook.net/en_US/fbevents.js'
+                    'https://connect.facebook.net/en_US/fbevents.js',
+                    'https://securepubads.g.doubleclick.net/tag/js/gpt.js',
+                    'https://c.amazon-adsystem.com/aax2/amzn_ads.js',
+                    'https://adservice.google.com/adsid/integrator.js',
+                    'https://tpc.googlesyndication.com/pagead/js/adsbygoogle.js'
                 ];
                 for (const url of adScripts) {
                     try {
                         const controller = new AbortController();
-                        const timeout = setTimeout(() => controller.abort(), 2000);
+                        const timeout = setTimeout(() => controller.abort(), 1500);
                         await fetch(url, { method: 'HEAD', mode: 'no-cors', cache: 'no-store', signal: controller.signal });
                         clearTimeout(timeout);
                         return false;
@@ -1070,7 +2014,12 @@ const FTS = (() => {
             };
 
             const domCheck = () => {
-                const adClasses = ['ad-banner', 'ads-manager', 'pub_300x250', 'ad-unit', 'ad-zone'];
+                const adClasses = [
+                    'ad-banner', 'ads-manager', 'pub_300x250', 'ad-unit', 'ad-zone', 
+                    'ad-sidebar', 'ad-wrapper', 'ad-container', 'ad-placement',
+                    'text-ad-links', 'sponsor-link', 'promoted-content', 'ad_box',
+                    'adsbygoogle', 'trc_rbox_container', 'trc_rbox_fixed'
+                ];
                 const dummy = dom.create('div', {
                     class: adClasses.join(' '),
                     style: 'position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; display: block !important;'
@@ -1082,8 +2031,18 @@ const FTS = (() => {
                 return isBlocked;
             };
 
-            const results = await Promise.all([networkCheck(), domCheck()]);
-            return results.includes(true) || !!(window.canRunAds === false || !window.adsbygoogle);
+            const pixelCheck = () => {
+                return new Promise((res) => {
+                    const img = new Image();
+                    img.src = 'https://www.google-analytics.com/__utm.gif';
+                    img.onload = () => res(false);
+                    img.onerror = () => res(true);
+                    setTimeout(() => res(true), 2000);
+                });
+            };
+
+            const results = await Promise.all([networkCheck(), domCheck(), pixelCheck()]);
+            return results.includes(true) || !!(window.canRunAds === false || !window.adsbygoogle || !window.googletag);
         };
 
         return { request, validate, serialize, getParams, isSameOrigin, detectAdblock };
@@ -1093,7 +2052,13 @@ const FTS = (() => {
     // DEVICE UTILITIES
     // -------------------------------------------------------------------------
     const device = (() => {
-        // Identifies the current operating system platform. Example: device.getPlatform() -> 'Desktop'
+        /**
+         * @description Identifies the current operating system platform.
+         * @author Fish Token
+         * @version 1.1.0
+         * @returns {string} - Platform name ('Android', 'iOS', 'Windows Phone', or 'Desktop').
+         * @example const os = FTS.device.getPlatform();
+         */
         const getPlatform = () => {
             const ua = navigator.userAgent;
             if (/Android/i.test(ua)) return 'Android';
@@ -1102,13 +2067,31 @@ const FTS = (() => {
             return 'Desktop';
         };
 
-        // Checks if the user is on a mobile device. Example: device.isMobile() -> true
+        /**
+         * @description Checks if the current device is a mobile device.
+         * @author Fish Token
+         * @version 1.1.0
+         * @returns {boolean} - True if mobile.
+         * @example if (FTS.device.isMobile()) { ... }
+         */
         const isMobile = () => /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-        // Checks if the app is running in standalone (PWA) mode. Example: device.isStandalone() -> false
+        /**
+         * @description Checks if the app is running in standalone mode (PWA).
+         * @author Fish Token
+         * @version 1.1.0
+         * @returns {boolean} - True if standalone.
+         * @example if (FTS.device.isStandalone()) { ... }
+         */
         const isStandalone = () => window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
 
-        // Returns various screen and viewport metrics. Example: device.getMetrics()
+        /**
+         * @description Retrieves a comprehensive set of device and viewport metrics.
+         * @author Fish Token
+         * @version 1.1.0
+         * @returns {object} - Object containing screen, viewport, and device status.
+         * @example const stats = FTS.device.getMetrics();
+         */
         const getMetrics = () => ({
             screen: {
                 w: window.screen.width,
@@ -1131,7 +2114,19 @@ const FTS = (() => {
     // FUN & EASTER EGGS
     // -------------------------------------------------------------------------
     const fun = (() => {
-        // Calculates the intersection point of two lines (Minecraft stronghold style). Example: fun.stronghold(0, 0, 45, 100, 100, 135)
+        /**
+         * @description Calculates the intersection of two lines (Stronghold triangulation).
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {number} x1 - X coordinate of first point.
+         * @param {number} z1 - Z coordinate of first point.
+         * @param {number} angle1 - Angle of first throw.
+         * @param {number} x2 - X coordinate of second point.
+         * @param {number} z2 - Z coordinate of second point.
+         * @param {number} angle2 - Angle of second throw.
+         * @returns {object} - { x, z } intersection point.
+         * @example const loc = FTS.fun.stronghold(100, 100, 45, 200, 100, 135);
+         */
         const stronghold = (x1, z1, angle1, x2, z2, angle2) => {
             const toRad = (deg) => deg * (Math.PI / 180);
             const m1 = -Math.tan(toRad(angle1 - 90));
@@ -1141,14 +2136,26 @@ const FTS = (() => {
             return { x: Math.round(x), z: Math.round(z) };
         };
 
-        // Returns the current status of the Doomsday Clock. Example: fun.doomsday()
+        /**
+         * @description Gets the current Doomsday Clock status.
+         * @author Fish Token
+         * @version 1.1.0
+         * @returns {object} - { status, lastUpdated, warning }.
+         * @example const clock = FTS.fun.doomsday();
+         */
         const doomsday = () => {
             const status = "85 seconds to midnight";
             const lastUpdated = "January 27, 2026";
             return { status, lastUpdated, warning: "It is the closest the world has ever been to catastrophe." };
         };
 
-        // Returns a random developer joke. Example: fun.getJoke()
+        /**
+         * @description Returns a random programmer joke.
+         * @author Fish Token
+         * @version 1.1.0
+         * @returns {string} - A funny joke.
+         * @example console.log(FTS.fun.getJoke());
+         */
         const getJoke = () => {
             const jokes = [
                 "Why do programmers prefer dark mode? Because light attracts bugs.",
@@ -1170,16 +2177,63 @@ const FTS = (() => {
                 "Why was the JavaScript developer sad? Because he didn't know how to 'null' his feelings.",
                 "Real programmers count from 0.",
                 "Why do C# and Java developers keep wearing glasses? Because they don't C#.",
-                "I've got a crappy DNS joke, but be warned, it might take up to 24 hours to get it."
+                "I've got a crappy DNS joke, but be warned, it might take up to 24 hours to get it.",
+                "What do you call a programmer from Finland? Nerdic.",
+                "Why did the programmer quit his job? Because he didn't get arrays.",
+                "A programmer was found dead in the shower. The instructions on the shampoo said: Lather, Rinse, Repeat.",
+                "To understand what recursion is, you must first understand what recursion is.",
+                "My attitude is not a bug, it's a feature.",
+                "In order to understand recursion, you must first understand recursion.",
+                "Wait, I already said that one. That's the joke.",
+                "Why do programmers always mix up Christmas and Halloween? Because Oct 31 == Dec 25.",
+                "A CSS developer walks into a bar and immediately walks into a different bar on a different floor.",
+                "Why did the web developer walk out of the restaurant? Because of the table layout.",
+                "What's a programmer's favorite place to hang out? The Foo Bar.",
+                "I would love to tell you a joke about UDP, but you might not get it.",
+                "Why was the developer unhappy with their job? They didn't get arrays.",
+                "A web developer walks into a restaurant and sits at a table. The waiter asks: 'Would you like a menu?' The developer replies: 'No thanks, I'll just look at the source.'",
+                "Why do programmers hate nature? It has too many bugs and no documentation.",
+                "How do you comfort a JavaScript bug? You console it.",
+                "Why did the functional programmer get thrown out of the bar? He had too many side effects.",
+                "What is a programmer's favorite snack? Microchips.",
+                "Why did the private class break up with the public class? It was too exposed.",
+                "How many developers does it take to screw in a lightbulb? Zero. They'll just declare 'Darkness is the new industry standard.'",
+                "Why did the database administrator leave his wife? She had one too many relations.",
+                "What's the best thing about being a programmer? You can work in your pajamas and still be 'developing'.",
+                "Why was the computer cold? It left its Windows open.",
+                "A programmer's favorite hangout spot? The break point.",
+                "Why did the developer go to the beach? To improve their sandbox.",
+                "Why was the mobile developer always tired? Because they had too many background processes running.",
+                "What do you call a group of 8 hobbits? A hobbyte.",
+                "Why did the browser go to therapy? It had too many tabs open.",
+                "A programmer is a machine that turns coffee into code.",
+                "Why do Java developers wear glasses? Because they don't C#.",
+                "There's no place like 127.0.0.1.",
+                "Why was the front-end developer so stressed? Because they were constantly losing focus.",
+                "A programmer's life: 10% writing code, 90% wondering why it doesn't work."
             ];
             return jokes[math.random(0, jokes.length - 1)];
         };
 
-        // Performs a virtual coin flip. Example: fun.coinFlip() -> 'Heads'
+        /**
+         * @description Flips a coin and returns the result.
+         * @author Fish Token
+         * @version 1.1.0
+         * @returns {string} - 'Heads' or 'Tails'.
+         * @example const result = FTS.fun.coinFlip();
+         */
         const coinFlip = () => math.random(0, 1) === 0 ? 'Heads' : 'Tails';
 
-        // Shakes the viewport for a specified duration and intensity. Example: fun.funShake(10, 1000)
-        const funShake = (intensity = 5, duration = 500) => {
+        /**
+         * @description Shakes the screen (body element) for a set duration.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {number} [intensity=5] - Pixels to shake.
+         * @param {number} [duration=500] - Duration in ms.
+         * @returns {void}
+         * @example FTS.fun.screenShake(10, 1000);
+         */
+        const screenShake = (intensity = 5, duration = 500) => {
             const body = document.body;
             const originalStyle = body.style.transition;
             body.style.transition = 'none';
@@ -1199,7 +2253,7 @@ const FTS = (() => {
             requestAnimationFrame(animate);
         };
 
-        return { stronghold, doomsday, getJoke, coinFlip, funShake };
+        return { stronghold, doomsday, getJoke, coinFlip, screenShake };
     })();
 
     // -------------------------------------------------------------------------
@@ -1208,6 +2262,7 @@ const FTS = (() => {
     return {
         math,
         visual,
+        ui,
         time,
         dom,
         data,
@@ -1215,13 +2270,21 @@ const FTS = (() => {
         net,
         device,
         fun,
-        // Initializes the library and performs post-load tasks.
+        /**
+         * @description Checks if the script is running on a local environment.
+         * @author Fish Token
+         * @version 1.1.0
+         * @returns {boolean} - True if localhost, 127.0.0.1, .local, or file://.
+         * @example if (FTS.isLocal()) { ... }
+         */
+        isLocal: () => {
+            const h = window.location.hostname;
+            return h === 'localhost' || h === '127.0.0.1' || h.endsWith('.local') || window.location.protocol === 'file:';
+        },
         init: () => {
             setTimeout(() => {
                 const hasSeenPopup = dom.storage.get('fts_init_popup');
-                
                 console.clear();
-                
                 const brand = `
   ███████╗████████╗███████╗
   ██╔════╝╚══██╔══╝██╔════╝
@@ -1232,7 +2295,7 @@ const FTS = (() => {
                 `;
                 console.log(`%c${brand}`, 'color: #007AFF; font-weight: bold;');
                 console.log(
-                    `%c FTS %c v1.0.0 %c Site enhanced by Fish Token %c\n%c Reference: %c https://niche-site.netlify.app/ %c`,
+                    `%c FTS %c v1.1.0 %c Site enhanced by Fish Token %c\n%c Reference: %c https://niche-site.netlify.app/ %c`,
                     'background: #007AFF; color: #fff; padding: 2px 6px; border-radius: 4px; font-weight: bold;',
                     'color: #888; font-size: 10px;',
                     'color: #555; font-style: italic;',
@@ -1241,30 +2304,43 @@ const FTS = (() => {
                     'color: #00CCFF; text-decoration: underline;',
                     ''
                 );
-
                 if (!hasSeenPopup) {
                     visual.banner({
-                        title: 'FTS Enhanced',
+                        title: 'FTS Notice',
                         message: 'This site is powered by Fish Token\'s Site Resources.',
                         icon: '🐟🥇',
                         duration: 6000,
-                        onDismiss: () => console.log('%c FTS Banner Dismissed ', 'background: #333; color: #0cf;')
+                        onDismiss: () => {}
                     });
                     dom.storage.set('fts_init_popup', true);
                 }
             }, 100);
         },
-        // Convenience aliases
+        /**
+         * @description Selects a single element from the DOM.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} s - CSS selector.
+         * @param {Document|HTMLElement} [root=document] - Root element.
+         * @returns {HTMLElement|null}
+         * @example const el = FTS.$("#my-id");
+         */
         $: dom.$,
+        /**
+         * @description Selects multiple elements from the DOM.
+         * @author Fish Token
+         * @version 1.1.0
+         * @param {string} s - CSS selector.
+         * @param {Document|HTMLElement} [root=document] - Root element.
+         * @returns {HTMLElement[]}
+         * @example const list = FTS.$$(".items");
+         */
         $$: dom.$$
     };
 })();
 
-// Module exports for different environments
 if (typeof module !== 'undefined' && module.exports) module.exports = FTS;
 else if (typeof define === 'function' && define.amd) define([], () => FTS);
-
-// Automatic initialization on DOM load
 if (typeof window !== 'undefined') {
     window.addEventListener('DOMContentLoaded', () => FTS.init());
 }
